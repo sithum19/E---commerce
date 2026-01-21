@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | ELEVATE</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Contact Page CSS -->
+    <style>
+        /* ===== CONTACT PAGE STYLES ===== */
+        .contact-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .contact-header h1 {
+            font-size: 48px;
+            margin-bottom: 16px;
+            color: white;
+        }
+        
+        .contact-header p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            padding: 80px 0;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 60px;
+        }
+        
+        @media (min-width: 992px) {
+            .contact-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        /* Contact Info */
+        .contact-info {
+            padding: 40px;
+            background-color: var(--secondary);
+            border-radius: var(--radius);
+        }
+        
+        .contact-info h2 {
+            margin-bottom: 32px;
+            color: var(--primary);
+        }
+        
+        .contact-details {
+            margin-bottom: 40px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        
+        .contact-item-content h4 {
+            margin-bottom: 4px;
+            color: var(--charcoal);
+        }
+        
+        .contact-item-content p {
+            color: var(--slate);
+            margin-bottom: 4px;
+        }
+        
+        .contact-item-content a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        
+        .contact-item-content a:hover {
+            text-decoration: underline;
+        }
+        
+        .social-contact {
+            margin-top: 40px;
+        }
+        
+        .social-contact h3 {
+            margin-bottom: 16px;
+            color: var(--primary);
+        }
+        
+        .social-icons-contact {
+            display: flex;
+            gap: 16px;
+        }
+        
+        .social-icons-contact a {
+            width: 44px;
+            height: 44px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-icons-contact a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        /* Contact Form */
+        .contact-form-container {
+            padding: 40px;
+            background-color: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+        
+        .contact-form-container h2 {
+            margin-bottom: 32px;
+            color: var(--primary);
+        }
+        
+        .contact-form .form-group {
+            margin-bottom: 24px;
+        }
+        
+        .contact-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--charcoal);
+        }
+        
+        .contact-form input,
+        .contact-form textarea,
+        .contact-form select {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+        
+        .contact-form input:focus,
+        .contact-form textarea:focus,
+        .contact-form select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+        }
+        
+        .contact-form textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        
+        @media (min-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            font-size: 16px;
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            padding: 80px 0;
+            background-color: var(--secondary);
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background-color: white;
+            border-radius: var(--radius);
+            margin-bottom: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .faq-question {
+            padding: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .faq-question:hover {
+            background-color: rgba(10, 37, 64, 0.02);
+        }
+        
+        .faq-answer {
+            padding: 0 24px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            color: var(--slate);
+        }
+        
+        .faq-answer.active {
+            padding: 0 24px 24px 24px;
+            max-height: 500px;
+        }
+        
+        .faq-toggle {
+            font-size: 20px;
+            color: var(--accent);
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-toggle.active {
+            transform: rotate(45deg);
+        }
+        
+        /* Map Section */
+        .map-section {
+            padding: 80px 0;
+        }
+        
+        .map-container {
+            height: 400px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .map-placeholder {
+            width: 100%;
+            height: 100%;
+            background-color: var(--secondary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--slate);
+        }
+        
+        .map-placeholder i {
+            font-size: 60px;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .contact-header h1 {
+                font-size: 36px;
+            }
+            
+            .contact-info,
+            .contact-form-container {
+                padding: 32px 24px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .contact-section {
+                padding: 60px 0;
+            }
+            
+            .faq-section {
+                padding: 60px 0;
+            }
+            
+            .map-section {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">Free shipping on orders over $100 | 100-day returns</div>
+    </div>
+    
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-container container">
+            <a href="index.html" class="logo">ELEVATE</a>
+            
+            <!-- Desktop Navigation -->
+            <nav class="nav-desktop">
+                <a href="index.html">Home</a>
+                <a href="shop.html">Shop</a>
+                <a href="collections.html">Collections</a>
+                <a href="about.html">About</a>
+                <a href="journal.html">Journal</a>
+                <a href="contact.html" class="active">Contact</a>
+            </nav>
+            
+            <!-- Header Icons -->
+            <div class="header-icons">
+                <a href="#"><i class="fas fa-search"></i></a>
+                <a href="#"><i class="far fa-user"></i></a>
+                <a href="#">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count">0</span>
+                </a>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-header">
+            <a href="index.html" class="logo">ELEVATE</a>
+            <button class="close-menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <nav class="mobile-nav">
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="collections.html">Collections</a>
+            <a href="about.html">About</a>
+            <a href="journal.html">Journal</a>
+            <a href="contact.html" class="active">Contact</a>
+        </nav>
+    </div>
+    
+    <!-- Contact Header -->
+    <section class="contact-header">
+        <div class="container">
+            <h1 class="fade-in">Get In Touch</h1>
+            <p class="fade-in delay-1">We're here to help! Contact our customer support team for any questions about our products, orders, or sustainability initiatives.</p>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-container">
+                <!-- Contact Info -->
+                <div class="contact-info fade-in">
+                    <h2>Contact Information</h2>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-item-content">
+                                <h4>Our Headquarters</h4>
+                                <p>123 Fashion Avenue</p>
+                                <p>New York, NY 10001</p>
+                                <p>United States</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-item-content">
+                                <h4>Phone Number</h4>
+                                <p>General Inquiries: +1 (555) 123-4567</p>
+                                <p>Customer Support: +1 (555) 987-6543</p>
+                                <a href="tel:+15551234567">Call Now</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-item-content">
+                                <h4>Email Address</h4>
+                                <p>General: hello@elevatefashion.com</p>
+                                <p>Support: support@elevatefashion.com</p>
+                                <p>Wholesale: wholesale@elevatefashion.com</p>
+                                <a href="mailto:hello@elevatefashion.com">Send Email</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-item-content">
+                                <h4>Business Hours</h4>
+                                <p>Monday - Friday: 9:00 AM - 6:00 PM EST</p>
+                                <p>Saturday: 10:00 AM - 4:00 PM EST</p>
+                                <p>Sunday: Closed</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-contact">
+                        <h3>Follow Us</h3>
+                        <div class="social-icons-contact">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-pinterest"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="contact-form-container fade-in delay-1">
+                    <h2>Send Us a Message</h2>
+                    
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="lastName">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject *</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Select a subject</option>
+                                <option value="order">Order Inquiry</option>
+                                <option value="returns">Returns & Exchanges</option>
+                                <option value="product">Product Questions</option>
+                                <option value="sizing">Sizing Help</option>
+                                <option value="wholesale">Wholesale Inquiry</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="orderNumber">Order Number (if applicable)</label>
+                            <input type="text" id="orderNumber" name="orderNumber">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Frequently Asked Questions</h2>
+            
+            <div class="faq-container">
+                <!-- FAQ 1 -->
+                <div class="faq-item fade-in">
+                    <div class="faq-question" onclick="toggleFAQ(1)">
+                        <span>What is your return policy?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer" id="faq-answer-1">
+                        <p>We offer a 100-day hassle-free return policy. Items must be unworn, unwashed, and in original condition with tags attached. Returns are free for orders over $100. Refunds are processed within 5-7 business days after we receive your return.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 2 -->
+                <div class="faq-item fade-in delay-1">
+                    <div class="faq-question" onclick="toggleFAQ(2)">
+                        <span>How long does shipping take?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer" id="faq-answer-2">
+                        <p>Standard shipping: 3-7 business days. Express shipping: 1-3 business days. International shipping: 7-14 business days depending on destination. You'll receive tracking information as soon as your order ships.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 3 -->
+                <div class="faq-item fade-in delay-2">
+                    <div class="faq-question" onclick="toggleFAQ(3)">
+                        <span>Do you offer international shipping?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer" id="faq-answer-3">
+                        <p>Yes, we ship to over 50 countries worldwide. Shipping costs and delivery times vary by destination. All international orders may be subject to customs duties and taxes, which are the responsibility of the recipient.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 4 -->
+                <div class="faq-item fade-in delay-3">
+                    <div class="faq-question" onclick="toggleFAQ(4)">
+                        <span>How do I care for my ELEVATE garments?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer" id="faq-answer-4">
+                        <p>Each product comes with specific care instructions. Generally, we recommend cold water wash, gentle cycle, and line drying to maintain quality and longevity. Avoid bleach and fabric softeners. For wool and cashmere items, dry cleaning is recommended.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 5 -->
+                <div class="faq-item fade-in">
+                    <div class="faq-question" onclick="toggleFAQ(5)">
+                        <span>What makes ELEVATE sustainable?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer" id="faq-answer-5">
+                        <p>We use ethically sourced materials (organic cotton, recycled polyester, sustainable wool), carbon-neutral shipping, eco-friendly packaging, fair labor practices, and 1% of all sales goes to environmental causes. Our entire supply chain is transparent and audited annually.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 48px;">
+                <a href="faq.html" class="btn btn-secondary">View All FAQs</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Visit Our Flagship Store</h2>
+            
+            <div class="map-container fade-in delay-1">
+                <div class="map-placeholder">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <h3>123 Fashion Avenue, New York</h3>
+                    <p>Open Monday - Saturday: 10:00 AM - 8:00 PM</p>
+                    <p style="margin-top: 16px;">(Interactive map would be integrated here)</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 32px;">
+                <div class="trust-badges" style="justify-content: center; gap: 32px;">
+                    <div class="trust-badge">
+                        <i class="fas fa-headset"></i>
+                        <span>24/7 Email Support</span>
+                    </div>
+                    <div class="trust-badge">
+                        <i class="fas fa-clock"></i>
+                        <span>Response within 24 hours</span>
+                    </div>
+                    <div class="trust-badge">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Secure Communication</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>ELEVATE</h3>
+                    <p style="color: #CBD5E0; margin-bottom: 24px;">Premium menswear crafted for the modern individual. Sustainable, ethical, and built to last.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Shop</h3>
+                    <ul class="footer-links">
+                        <li><a href="shop.html">All Collections</a></li>
+                        <li><a href="collections.html">New Arrivals</a></li>
+                        <li><a href="collections.html">Best Sellers</a></li>
+                        <li><a href="collections.html">Sustainable Line</a></li>
+                        <li><a href="shop.html">Gift Cards</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="shipping.html">Shipping & Returns</a></li>
+                        <li><a href="size-guide.html">Size Guide</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="track-order.html">Track Order</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html">Our Story</a></li>
+                        <li><a href="sustainability.html">Sustainability</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div style="color: #CBD5E0; font-size: 14px;">
+                    &copy; 2023 ELEVATE. All rights reserved.
+                </div>
+                
+                <div class="payment-icons">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-amex"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                    <i class="fab fa-apple-pay"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Common JavaScript -->
+    <script src="script.js"></script>
+    
+    <!-- Contact Page JavaScript -->
+    <script>
+        // FAQ Toggle Functionality
+        function toggleFAQ(id) {
+            const answer = document.getElementById(`faq-answer-${id}`);
+            const toggle = document.querySelector(`#faq-answer-${id}`).previousElementSibling.querySelector('.faq-toggle');
+            
+            answer.classList.toggle('active');
+            toggle.classList.toggle('active');
+            toggle.textContent = toggle.classList.contains('active') ? '−' : '+';
+        }
+        
+        // Contact Form Submission
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form data
+                const formData = new FormData(this);
+                const data = Object.fromEntries(formData);
+                
+                // In real implementation, send to backend
+                console.log('Contact form submitted:', data);
+                
+                // Show success message
+                showNotification('Thank you! Your message has been sent successfully.');
+                
+                // Reset form
+                this.reset();
+            });
+        }
+        
+        // Initialize all FAQs as closed
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqToggles = document.querySelectorAll('.faq-toggle');
+            faqToggles.forEach(toggle => {
+                toggle.textContent = '+';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA | Colombo</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- 1. VARIABLES --- */
+        :root {
+            /* Light Theme (Default) */
+            --bg-body: #ffffff;
+            --bg-secondary: #f4f4f5;
+            --text-main: #000000;
+            --text-muted: #666666;
+            --accent: #2563eb; /* Royal Blue */
+            --border: #e5e5e5;
+            --card-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            
+            --font-head: 'Playfair Display', serif;
+            --font-body: 'Manrope', sans-serif;
+            
+            --ease: cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        [data-theme="dark"] {
+            --bg-body: #0a0a0a;
+            --bg-secondary: #111111;
+            --text-main: #ffffff;
+            --text-muted: #a1a1aa;
+            --accent: #60a5fa;
+            --border: #333333;
+            --card-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            transition: background-color 0.4s, color 0.4s;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        button { font-family: inherit; }
+
+        /* --- 2. HEADER --- */
+        header {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            transition: 0.3s;
+        }
+        
+        [data-theme="dark"] header { background: rgba(10, 10, 10, 0.8); }
+
+        .logo { font-family: var(--font-head); font-weight: 700; font-size: 24px; }
+
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { font-size: 14px; font-weight: 500; position: relative; }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px;
+            background: var(--text-main); transition: 0.3s;
+        }
+        .nav-links a:hover::after { width: 100%; }
+
+        .actions { display: flex; gap: 20px; align-items: center; }
+        .theme-toggle { cursor: pointer; padding: 5px; }
+
+        /* --- 3. HERO --- */
+        .hero {
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+            background: radial-gradient(circle at 50% 50%, var(--bg-secondary), var(--bg-body));
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            line-height: 1.1;
+            margin-bottom: 20px;
+            font-family: var(--font-head);
+            opacity: 0; animation: fadeUp 1s forwards 0.2s;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            max-width: 500px; margin: 0 auto 40px;
+            opacity: 0; animation: fadeUp 1s forwards 0.4s;
+        }
+
+        .btn-primary {
+            padding: 15px 40px;
+            background: var(--text-main);
+            color: var(--bg-body);
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            opacity: 0; animation: fadeUp 1s forwards 0.6s;
+        }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+
+        /* --- 4. CONCEPT SECTION --- */
+        .concept { padding: 80px 40px; background: var(--bg-secondary); text-align: center; }
+        .concept h2 { font-family: var(--font-head); font-size: 2.5rem; margin-bottom: 20px; }
+        .concept p { max-width: 700px; margin: 0 auto; color: var(--text-muted); }
+
+        /* --- 5. SHOP SECTION --- */
+        .shop-header {
+            padding: 80px 40px 40px;
+            text-align: center;
+        }
+
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .filter-btn {
+            padding: 8px 20px;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--text-main);
+            color: var(--bg-body);
+            border-color: var(--text-main);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 30px;
+            padding: 0 40px 100px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: var(--bg-body);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: 0.4s var(--ease);
+            border: 1px solid var(--border);
+            animation: fadeIn 0.6s ease;
+        }
+
+        .card:hover { transform: translateY(-8px); }
+
+        .card-img {
+            height: 320px;
+            position: relative;
+            background: #f0f0f0;
+            overflow: hidden;
+        }
+        
+        .card-img img { transition: 0.6s; }
+        .card:hover .card-img img { transform: scale(1.05); }
+
+        .card-details { padding: 20px; }
+        .card-cat { font-size: 11px; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1px; }
+        .card-title { font-size: 16px; font-weight: 600; margin: 5px 0; }
+        .card-price { color: var(--accent); font-weight: 700; font-size: 15px; }
+
+        .add-btn {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .add-btn:hover { background: var(--text-main); color: var(--bg-body); }
+
+        /* Animations */
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } from { opacity: 0; transform: translateY(30px); } }
+        @keyframes fadeIn { to { opacity: 1; } from { opacity: 0; } }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            header { padding: 15px 20px; }
+            .nav-links { display: none; }
+            .grid { padding: 0 20px 80px; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+            .card-img { height: 200px; }
+            .hero h1 { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">AURA.</div>
+        <nav class="nav-links">
+            <a href="#shop" onclick="filterItems('all')">Collections</a>
+            <a href="#concept">Concept</a>
+            <a href="#shop" onclick="filterItems('archive')">Archive</a>
+        </nav>
+        <div class="actions">
+            <div class="theme-toggle" onclick="toggleTheme()">
+                Theme ◑
+            </div>
+            <div class="cart">Cart (<span id="cart-count">0</span>)</div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div>
+            <h1>Modern <br>Essence.</h1>
+            <p>Curated lifestyle goods for the Colombo minimalist.</p>
+            <a href="#shop" class="btn-primary">Shop Collection</a>
+        </div>
+    </section>
+
+    <section id="concept" class="concept">
+        <h2>The Concept</h2>
+        <p>Aura stands at the intersection of modern utility and Sri Lankan heritage. We believe in design that lasts, materials that breathe, and aesthetics that inspire.</p>
+    </section>
+
+    <div id="shop" class="shop-header">
+        <h2>New Arrivals</h2>
+        <div class="filters">
+            <button class="filter-btn active" onclick="filterItems('all')">All</button>
+            <button class="filter-btn" onclick="filterItems('Men')">Men</button>
+            <button class="filter-btn" onclick="filterItems('Women')">Women</button>
+            <button class="filter-btn" onclick="filterItems('Tech')">Tech</button>
+            <button class="filter-btn" onclick="filterItems('Accessories')">Accessories</button>
+        </div>
+    </div>
+
+    <div class="grid" id="product-grid">
+        </div>
+
+    <footer style="padding: 60px 20px; text-align: center; border-top: 1px solid var(--border);">
+        <p style="color: var(--text-muted); font-size: 14px;">© 2026 AURA Colombo. All prices in LKR.</p>
+    </footer>
+
+    <script>
+        // --- 1. PRODUCT DATABASE (20+ Items) ---
+        const products = [
+            { id: 1, name: "Oversized Linen Shirt", category: "Men", price: 6500, img: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=500&auto=format&fit=crop&q=60" },
+            { id: 2, name: "Silk Summer Dress", category: "Women", price: 8900, img: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=500&auto=format&fit=crop&q=60" },
+            { id: 3, name: "Noise-Cancel Pods", category: "Tech", price: 24500, img: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500&auto=format&fit=crop&q=60" },
+            { id: 4, name: "Leather Bi-Fold Wallet", category: "Accessories", price: 4500, img: "https://images.unsplash.com/photo-1627123424574-1800390f4d5d?w=500&auto=format&fit=crop&q=60" },
+            { id: 5, name: "Essential Cargo Pants", category: "Men", price: 7200, img: "https://images.unsplash.com/photo-1517445312882-68041d81b8d2?w=500&auto=format&fit=crop&q=60" },
+            { id: 6, name: "Gold Plated Hoop", category: "Accessories", price: 3200, img: "https://images.unsplash.com/photo-1630019852942-f89202989a51?w=500&auto=format&fit=crop&q=60" },
+            { id: 7, name: "Smart Fitness Watch", category: "Tech", price: 35000, img: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&auto=format&fit=crop&q=60" },
+            { id: 8, name: "Cotton Crop Top", category: "Women", price: 2800, img: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&auto=format&fit=crop&q=60" },
+            { id: 9, name: "Aviator Sunglasses", category: "Accessories", price: 5600, img: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=500&auto=format&fit=crop&q=60" },
+            { id: 10, name: "Mechanical Keyboard", category: "Tech", price: 18500, img: "https://images.unsplash.com/photo-1595225476474-87563907a212?w=500&auto=format&fit=crop&q=60" },
+            { id: 11, name: "Denim Jacket", category: "Men", price: 9500, img: "https://images.unsplash.com/photo-1516257984-b1b4d8c9230c?w=500&auto=format&fit=crop&q=60" },
+            { id: 12, name: "Pleated Skirt", category: "Women", price: 5400, img: "https://images.unsplash.com/photo-1582142892734-8a6834f5985e?w=500&auto=format&fit=crop&q=60" },
+            { id: 13, name: "Wireless Power Bank", category: "Tech", price: 6000, img: "https://images.unsplash.com/photo-1609592424362-75d564858b45?w=500&auto=format&fit=crop&q=60" },
+            { id: 14, name: "Minimalist Backpack", category: "Accessories", price: 8200, img: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&auto=format&fit=crop&q=60" },
+            { id: 15, name: "Graphic Tee 'Archive'", category: "archive", price: 4000, img: "https://images.unsplash.com/photo-1503342394128-c104d54dba01?w=500&auto=format&fit=crop&q=60" },
+            { id: 16, name: "High-Top Sneakers", category: "Men", price: 12500, img: "https://images.unsplash.com/photo-1552346154-21d32810aba3?w=500&auto=format&fit=crop&q=60" },
+            { id: 17, name: "Bluetooth Speaker", category: "Tech", price: 11000, img: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500&auto=format&fit=crop&q=60" },
+            { id: 18, name: "Wool Beanie", category: "Accessories", price: 2100, img: "https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=500&auto=format&fit=crop&q=60" },
+            { id: 19, name: "Formal Blazer", category: "Women", price: 14000, img: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=500&auto=format&fit=crop&q=60" },
+            { id: 20, name: "Smart Home Hub", category: "Tech", price: 15500, img: "https://images.unsplash.com/photo-1558089687-f282ffcbc126?w=500&auto=format&fit=crop&q=60" },
+            { id: 21, name: "Vintage 1990 Tee", category: "archive", price: 15000, img: "https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=500&auto=format&fit=crop&q=60" }
+        ];
+
+        // --- 2. RENDER FUNCTION ---
+        const grid = document.getElementById('product-grid');
+        
+        function displayProducts(filter) {
+            grid.innerHTML = ''; // Clear current
+            
+            const filtered = filter === 'all' 
+                ? products.filter(p => p.category !== 'archive') // Don't show archive in 'all' usually
+                : products.filter(p => p.category.toLowerCase() === filter.toLowerCase());
+
+            filtered.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-img">
+                        <img src="${product.img}" alt="${product.name}" loading="lazy">
+                    </div>
+                    <div class="card-details">
+                        <div class="card-cat">${product.category}</div>
+                        <div class="card-title">${product.name}</div>
+                        <div class="card-price">LKR ${product.price.toLocaleString()}</div>
+                        <button class="add-btn" onclick="addToCart('${product.name}')">Add to Cart</button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // --- 3. FILTER LOGIC ---
+        function filterItems(category) {
+            // Update Active Button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if(btn.innerText.toLowerCase() === category.toLowerCase() || (category === 'all' && btn.innerText === 'All')) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            // Special Case for Archive Link in Nav
+            if(category === 'archive') {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            }
+
+            displayProducts(category);
+        }
+
+        // --- 4. CART & THEME ---
+        let cart = 0;
+        function addToCart(name) {
+            cart++;
+            document.getElementById('cart-count').textContent = cart;
+            alert(`Added ${name} to cart!`);
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const current = html.getAttribute('data-theme');
+            html.setAttribute('data-theme', current === 'light' ? 'dark' : 'light');
+        }
+
+        // Init
+        displayProducts('all');
+
+    </script>
+</body>
+</html>

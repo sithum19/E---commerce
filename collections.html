@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collections | ELEVATE</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Collections Page CSS -->
+    <style>
+        /* ===== COLLECTIONS PAGE STYLES ===== */
+        .collections-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .collections-header h1 {
+            font-size: 48px;
+            margin-bottom: 16px;
+            color: white;
+        }
+        
+        .collections-header p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        /* Collections Grid */
+        .collections-grid {
+            padding: 80px 0;
+        }
+        
+        .collection-card {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin-bottom: 48px;
+            height: 500px;
+            box-shadow: var(--shadow);
+        }
+        
+        .collection-image {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .collection-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+        
+        .collection-card:hover .collection-image img {
+            transform: scale(1.05);
+        }
+        
+        .collection-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 48px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+        }
+        
+        .collection-badge {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        
+        .collection-content h2 {
+            font-size: 36px;
+            margin-bottom: 16px;
+            color: white;
+        }
+        
+        .collection-content p {
+            font-size: 18px;
+            margin-bottom: 24px;
+            opacity: 0.9;
+            max-width: 500px;
+        }
+        
+        /* Featured Products */
+        .featured-collection {
+            padding: 80px 0;
+            background-color: var(--secondary);
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 32px;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+        }
+        
+        .product-image {
+            height: 300px;
+            overflow: hidden;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-category {
+            color: var(--accent);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        
+        .product-title {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: var(--charcoal);
+        }
+        
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .current-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .original-price {
+            font-size: 16px;
+            color: var(--slate);
+            text-decoration: line-through;
+        }
+        
+        .product-rating {
+            color: #FFC107;
+            margin-bottom: 16px;
+        }
+        
+        /* Collection Banner */
+        .collection-banner {
+            background: linear-gradient(rgba(10, 37, 64, 0.9), rgba(10, 37, 64, 0.9)), url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0;
+            text-align: center;
+            color: white;
+        }
+        
+        .collection-banner h2 {
+            font-size: 42px;
+            margin-bottom: 24px;
+        }
+        
+        .collection-banner p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 32px;
+            opacity: 0.9;
+        }
+        
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .collections-header h1 {
+                font-size: 36px;
+            }
+            
+            .collection-content h2 {
+                font-size: 28px;
+            }
+            
+            .collection-content {
+                padding: 32px;
+            }
+            
+            .collection-card {
+                height: 400px;
+            }
+            
+            .collection-banner h2 {
+                font-size: 32px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .collection-card {
+                height: 350px;
+            }
+            
+            .collection-content {
+                padding: 24px;
+            }
+            
+            .collection-content h2 {
+                font-size: 24px;
+            }
+            
+            .collection-content p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">Free shipping on orders over $100 | 100-day returns</div>
+    </div>
+    
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-container container">
+            <a href="index.html" class="logo">ELEVATE</a>
+            
+            <!-- Desktop Navigation -->
+            <nav class="nav-desktop">
+                <a href="index.html">Home</a>
+                <a href="shop.html">Shop</a>
+                <a href="collections.html" class="active">Collections</a>
+                <a href="about.html">About</a>
+                <a href="journal.html">Journal</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            
+            <!-- Header Icons -->
+            <div class="header-icons">
+                <a href="#"><i class="fas fa-search"></i></a>
+                <a href="#"><i class="far fa-user"></i></a>
+                <a href="#">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count">0</span>
+                </a>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-header">
+            <a href="index.html" class="logo">ELEVATE</a>
+            <button class="close-menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <nav class="mobile-nav">
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="collections.html" class="active">Collections</a>
+            <a href="about.html">About</a>
+            <a href="journal.html">Journal</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+    
+    <!-- Collections Header -->
+    <section class="collections-header">
+        <div class="container">
+            <h1 class="fade-in">Curated Collections</h1>
+            <p class="fade-in delay-1">Discover our thoughtfully curated collections, each designed with a specific purpose and aesthetic in mind.</p>
+        </div>
+    </section>
+    
+    <!-- Collections Grid -->
+    <section class="collections-grid">
+        <div class="container">
+            <!-- Collection 1 -->
+            <div class="collection-card fade-in">
+                <div class="collection-image">
+                    <img src="https://images.unsplash.com/photo-1558769132-cb1f458e43b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Sustainable Collection">
+                </div>
+                <div class="collection-content">
+                    <div class="collection-badge">SUSTAINABLE</div>
+                    <h2>Eco-Conscious Line</h2>
+                    <p>Our sustainable collection features ethically sourced materials, recycled fabrics, and carbon-neutral production methods. Each piece is designed to minimize environmental impact without compromising on style.</p>
+                    <a href="shop.html?collection=sustainable" class="btn btn-primary">Shop Collection</a>
+                </div>
+            </div>
+            
+            <!-- Collection 2 -->
+            <div class="collection-card fade-in delay-1">
+                <div class="collection-image">
+                    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Premium Collection">
+                </div>
+                <div class="collection-content">
+                    <div class="collection-badge">PREMIUM</div>
+                    <h2>Signature Premium</h2>
+                    <p>Experience unparalleled quality with our premium collection. Featuring the finest materials, expert craftsmanship, and timeless designs that elevate your everyday wardrobe.</p>
+                    <a href="shop.html?collection=premium" class="btn btn-primary">Shop Collection</a>
+                </div>
+            </div>
+            
+            <!-- Collection 3 -->
+            <div class="collection-card fade-in delay-2">
+                <div class="collection-image">
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Minimalist Collection">
+                </div>
+                <div class="collection-content">
+                    <div class="collection-badge">MINIMALIST</div>
+                    <h2>Essentials Collection</h2>
+                    <p>Streamlined, versatile pieces that form the foundation of a modern wardrobe. Designed with clean lines, neutral palettes, and maximum versatility.</p>
+                    <a href="shop.html?collection=essentials" class="btn btn-primary">Shop Collection</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Featured Collection -->
+    <section class="featured-collection">
+        <div class="container">
+            <h2 class="section-title fade-in">Best Sellers Collection</h2>
+            <p style="text-align: center; margin-bottom: 48px; color: var(--slate); max-width: 700px; margin-left: auto; margin-right: auto;" class="fade-in delay-1">
+                Discover our most loved pieces, curated based on customer favorites and reviews.
+            </p>
+            
+            <div class="product-grid">
+                <!-- Product 1 -->
+                <a href="product.html?id=1" class="product-card fade-in">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Premium Wool Blazer">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Blazers</div>
+                        <h3 class="product-title">Premium Wool Blazer</h3>
+                        <div class="product-price">
+                            <span class="current-price">$189.99</span>
+                            <span class="original-price">$249.99</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span style="color: var(--slate); font-size: 14px; margin-left: 8px;">(42)</span>
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- Product 2 -->
+                <a href="product.html?id=2" class="product-card fade-in delay-1">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Organic Cotton T-Shirt">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">T-Shirts</div>
+                        <h3 class="product-title">Organic Cotton T-Shirt</h3>
+                        <div class="product-price">
+                            <span class="current-price">$34.99</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span style="color: var(--slate); font-size: 14px; margin-left: 8px;">(128)</span>
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- Product 3 -->
+                <a href="product.html?id=3" class="product-card fade-in delay-2">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Slim Fit Denim Jeans">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Bottoms</div>
+                        <h3 class="product-title">Slim Fit Denim Jeans</h3>
+                        <div class="product-price">
+                            <span class="current-price">$79.99</span>
+                            <span class="original-price">$99.99</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span style="color: var(--slate); font-size: 14px; margin-left: 8px;">(67)</span>
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- Product 4 -->
+                <a href="product.html?id=4" class="product-card fade-in delay-3">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Cashmere Sweater">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Sweaters</div>
+                        <h3 class="product-title">Cashmere Crewneck Sweater</h3>
+                        <div class="product-price">
+                            <span class="current-price">$149.99</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span style="color: var(--slate); font-size: 14px; margin-left: 8px;">(89)</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <div style="text-align: center; margin-top: 48px;">
+                <a href="shop.html" class="btn btn-secondary">View All Best Sellers</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Collection Banner -->
+    <section class="collection-banner">
+        <div class="container">
+            <h2 class="fade-in">New Arrivals Every Month</h2>
+            <p class="fade-in delay-1">Stay ahead of the trends with our monthly drops. Fresh styles, exclusive pieces, and limited editions delivered straight to you.</p>
+            <a href="shop.html?filter=new" class="btn btn-primary fade-in delay-2">Shop New Arrivals</a>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>ELEVATE</h3>
+                    <p style="color: #CBD5E0; margin-bottom: 24px;">Premium menswear crafted for the modern individual. Sustainable, ethical, and built to last.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Shop</h3>
+                    <ul class="footer-links">
+                        <li><a href="shop.html">All Collections</a></li>
+                        <li><a href="collections.html">New Arrivals</a></li>
+                        <li><a href="collections.html">Best Sellers</a></li>
+                        <li><a href="collections.html">Sustainable Line</a></li>
+                        <li><a href="shop.html">Gift Cards</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="shipping.html">Shipping & Returns</a></li>
+                        <li><a href="size-guide.html">Size Guide</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="track-order.html">Track Order</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html">Our Story</a></li>
+                        <li><a href="sustainability.html">Sustainability</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div style="color: #CBD5E0; font-size: 14px;">
+                    &copy; 2023 ELEVATE. All rights reserved.
+                </div>
+                
+                <div class="payment-icons">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-amex"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                    <i class="fab fa-apple-pay"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Common JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

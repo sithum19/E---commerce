@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Wool Blazer | ELEVATE</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Product Page CSS -->
+    <style>
+        /* ===== PRODUCT PAGE STYLES ===== */
+        .product-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 40px 0;
+        }
+        
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+        
+        .breadcrumb a {
+            color: #CBD5E0;
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        .breadcrumb .separator {
+            color: #718096;
+        }
+        
+        .breadcrumb .current {
+            color: white;
+            font-weight: 500;
+        }
+        
+        /* Product Container */
+        .product-container {
+            padding: 60px 0;
+        }
+        
+        .product-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 60px;
+        }
+        
+        @media (min-width: 992px) {
+            .product-layout {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        /* Product Gallery */
+        .product-gallery {
+            position: sticky;
+            top: 120px;
+        }
+        
+        .main-image {
+            height: 500px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin-bottom: 16px;
+            background-color: var(--secondary);
+        }
+        
+        .main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            cursor: zoom-in;
+        }
+        
+        .thumbnail-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+        
+        .thumbnail {
+            height: 100px;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: var(--transition);
+        }
+        
+        .thumbnail.active {
+            border-color: var(--accent);
+        }
+        
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Product Details */
+        .product-brand {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
+            margin-bottom: 12px;
+            display: block;
+        }
+        
+        .product-title {
+            font-size: 32px;
+            margin-bottom: 16px;
+            color: var(--primary);
+        }
+        
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        
+        .stars {
+            color: #FFC107;
+        }
+        
+        .rating-count {
+            color: var(--slate);
+            font-size: 14px;
+        }
+        
+        .write-review {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .write-review:hover {
+            text-decoration: underline;
+        }
+        
+        .price-container {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+        
+        .price {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .price-compare {
+            font-size: 20px;
+            color: var(--slate);
+            text-decoration: line-through;
+        }
+        
+        .save-badge {
+            background-color: var(--error);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .product-description {
+            color: var(--slate);
+            margin-bottom: 32px;
+            line-height: 1.7;
+        }
+        
+        /* Product Options */
+        .product-options {
+            margin-bottom: 32px;
+        }
+        
+        .option-title {
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: block;
+            color: var(--charcoal);
+        }
+        
+        .color-selector {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+        
+        .color-option {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .color-option.active {
+            border-color: var(--primary);
+            transform: scale(1.1);
+        }
+        
+        .color-option.active:after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+        
+        .size-selector {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+        
+        .size-option {
+            width: 60px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            background-color: white;
+        }
+        
+        .size-option:hover, .size-option.active {
+            border-color: var(--accent);
+            background-color: rgba(255, 107, 53, 0.05);
+        }
+        
+        .size-option.disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            background-color: var(--secondary);
+        }
+        
+        .size-guide-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 14px;
+            display: inline-block;
+            margin-top: 8px;
+        }
+        
+        .size-guide-link:hover {
+            text-decoration: underline;
+        }
+        
+        /* Product Actions */
+        .product-actions {
+            margin-bottom: 32px;
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            width: fit-content;
+            margin-bottom: 20px;
+        }
+        
+        .quantity-btn {
+            width: 48px;
+            height: 48px;
+            background-color: var(--secondary);
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        
+        .quantity-btn:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .quantity-input {
+            width: 60px;
+            height: 48px;
+            border: none;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        
+        .add-to-cart-btn {
+            flex: 1;
+            min-width: 200px;
+            height: 56px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        
+        .buy-now-btn {
+            background-color: var(--primary);
+            color: white;
+            height: 56px;
+            flex: 1;
+            min-width: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        
+        .wishlist-btn {
+            width: 56px;
+            height: 56px;
+            border: 1px solid var(--border);
+            background-color: white;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .wishlist-btn:hover {
+            background-color: var(--secondary);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        
+        /* Trust Row */
+        .trust-row {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .trust-item-small {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+        
+        .trust-item-small i {
+            color: var(--success);
+            font-size: 18px;
+        }
+        
+        /* Product Tabs */
+        .product-tabs {
+            margin: 60px 0;
+        }
+        
+        .tab-headers {
+            display: flex;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+        
+        .tab-header {
+            padding: 16px 24px;
+            background: none;
+            border: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--slate);
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .tab-header:hover {
+            color: var(--charcoal);
+        }
+        
+        .tab-header.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .tab-header.active:after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .specs-table tr {
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .specs-table td {
+            padding: 16px;
+        }
+        
+        .specs-table td:first-child {
+            font-weight: 500;
+            color: var(--charcoal);
+            width: 30%;
+        }
+        
+        .specs-table td:last-child {
+            color: var(--slate);
+        }
+        
+        /* Reviews */
+        .review-summary {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .overall-rating {
+            text-align: center;
+            padding: 24px;
+            background-color: var(--secondary);
+            border-radius: var(--radius);
+            min-width: 150px;
+        }
+        
+        .rating-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 1;
+        }
+        
+        .rating-stars {
+            color: #FFC107;
+            margin: 8px 0;
+        }
+        
+        .total-reviews {
+            color: var(--slate);
+            font-size: 14px;
+        }
+        
+        .rating-bars {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .rating-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .rating-label {
+            width: 60px;
+            font-size: 14px;
+            color: var(--charcoal);
+        }
+        
+        .bar-container {
+            flex: 1;
+            height: 8px;
+            background-color: var(--secondary);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .bar {
+            height: 100%;
+            background-color: #FFC107;
+            border-radius: 4px;
+        }
+        
+        .review-list {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+        
+        .review-item {
+            padding: 24px;
+            background-color: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+        
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        
+        .reviewer-info h4 {
+            margin-bottom: 4px;
+        }
+        
+        .review-date {
+            color: var(--slate);
+            font-size: 14px;
+        }
+        
+        .review-content p {
+            color: var(--slate);
+            line-height: 1.7;
+        }
+        
+        /* Related Products */
+        .related-products {
+            padding: 60px 0;
+            background-color: var(--secondary);
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 32px;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+        }
+        
+        .product-image {
+            height: 300px;
+            overflow: hidden;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-category {
+            color: var(--accent);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        
+        .product-title {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: var(--charcoal);
+        }
+        
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .current-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .original-price {
+            font-size: 16px;
+            color: var(--slate);
+            text-decoration: line-through;
+        }
+        
+        .product-rating-small {
+            color: #FFC107;
+            font-size: 14px;
+        }
+        
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .product-title {
+                font-size: 28px;
+            }
+            
+            .price {
+                font-size: 28px;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .add-to-cart-btn,
+            .buy-now-btn {
+                min-width: 100%;
+            }
+            
+            .product-gallery {
+                position: static;
+            }
+            
+            .main-image {
+                height: 400px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .product-container {
+                padding: 40px 0;
+            }
+            
+            .main-image {
+                height: 350px;
+            }
+            
+            .thumbnail {
+                height: 80px;
+            }
+            
+            .review-summary {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .tab-headers {
+                overflow-x: auto;
+                white-space: nowrap;
+                flex-wrap: nowrap;
+            }
+            
+            .tab-header {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">Free shipping on orders over $100 | 100-day returns</div>
+    </div>
+    
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-container container">
+            <a href="index.html" class="logo">ELEVATE</a>
+            
+            <!-- Desktop Navigation -->
+            <nav class="nav-desktop">
+                <a href="index.html">Home</a>
+                <a href="shop.html">Shop</a>
+                <a href="collections.html">Collections</a>
+                <a href="about.html">About</a>
+                <a href="journal.html">Journal</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            
+            <!-- Header Icons -->
+            <div class="header-icons">
+                <a href="#"><i class="fas fa-search"></i></a>
+                <a href="#"><i class="far fa-user"></i></a>
+                <a href="#">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count">0</span>
+                </a>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-header">
+            <a href="index.html" class="logo">ELEVATE</a>
+            <button class="close-menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <nav class="mobile-nav">
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="collections.html">Collections</a>
+            <a href="about.html">About</a>
+            <a href="journal.html">Journal</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+    
+    <!-- Product Header -->
+    <section class="product-header">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span class="separator">/</span>
+                <a href="shop.html">Shop</a>
+                <span class="separator">/</span>
+                <a href="shop.html?category=blazers">Blazers</a>
+                <span class="separator">/</span>
+                <span class="current">Premium Wool Blazer</span>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Product Container -->
+    <section class="product-container">
+        <div class="container">
+            <div class="product-layout">
+                <!-- Product Gallery -->
+                <div class="product-gallery fade-in">
+                    <div class="main-image">
+                        <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Premium Wool Blazer" id="main-product-image">
+                    </div>
+                    
+                    <div class="thumbnail-grid">
+                        <div class="thumbnail active" onclick="changeImage(0)">
+                            <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Blazer Front">
+                        </div>
+                        <div class="thumbnail" onclick="changeImage(1)">
+                            <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Blazer Back">
+                        </div>
+                        <div class="thumbnail" onclick="changeImage(2)">
+                            <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Blazer Detail">
+                        </div>
+                        <div class="thumbnail" onclick="changeImage(3)">
+                            <img src="https://images.unsplash.com/photo-1554412933-514a83d2f3c8?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Blazer Material">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Details -->
+                <div class="product-details fade-in delay-1">
+                    <span class="product-brand">ELEVATE PREMIUM</span>
+                    <h1 class="product-title">Premium Wool Blazer</h1>
+                    
+                    <div class="product-rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="rating-count">4.7 (42 reviews)</span>
+                        <a href="#reviews" class="write-review">Write a review</a>
+                    </div>
+                    
+                    <div class="price-container">
+                        <div class="price">$189.99</div>
+                        <div class="price-compare">$249.99</div>
+                        <div class="save-badge">Save 24%</div>
+                    </div>
+                    
+                    <p class="product-description">
+                        Crafted from premium Italian wool, this blazer offers exceptional comfort and timeless style. 
+                        Featuring a modern slim fit, notch lapel, and functional buttons, it's perfect for both professional 
+                        settings and special occasions. Lined with breathable cupro for added comfort.
+                    </p>
+                    
+                    <!-- Color Options -->
+                    <div class="product-options">
+                        <span class="option-title">Color:</span>
+                        <div class="color-selector">
+                            <div class="color-option active" style="background-color: #0A2540;" onclick="selectColor(0, 'Navy')" title="Navy"></div>
+                            <div class="color-option" style="background-color: #2D3748;" onclick="selectColor(1, 'Charcoal')" title="Charcoal"></div>
+                            <div class="color-option" style="background-color: #718096;" onclick="selectColor(2, 'Slate Gray')" title="Slate Gray"></div>
+                            <div class="color-option" style="background-color: #1A202C;" onclick="selectColor(3, 'Midnight Black')" title="Midnight Black"></div>
+                        </div>
+                        
+                        <span class="option-title">Size:</span>
+                        <div class="size-selector">
+                            <div class="size-option">XS</div>
+                            <div class="size-option active">S</div>
+                            <div class="size-option">M</div>
+                            <div class="size-option">L</div>
+                            <div class="size-option">XL</div>
+                            <div class="size-option disabled">XXL</div>
+                        </div>
+                        <a href="size-guide.html" class="size-guide-link">View Size Guide</a>
+                    </div>
+                    
+                    <!-- Product Actions -->
+                    <div class="product-actions">
+                        <div class="quantity-selector">
+                            <button class="quantity-btn" onclick="updateQuantity(-1)">-</button>
+                            <input type="text" class="quantity-input" value="1" id="quantity">
+                            <button class="quantity-btn" onclick="updateQuantity(1)">+</button>
+                        </div>
+                        
+                        <div class="action-buttons">
+                            <button class="btn btn-primary add-to-cart-btn" onclick="addToCartProduct()">
+                                <i class="fas fa-shopping-bag"></i> Add to Cart
+                            </button>
+                            
+                            <button class="btn buy-now-btn" onclick="buyNowProduct()">
+                                <i class="fas fa-bolt"></i> Buy Now
+                            </button>
+                            
+                            <button class="wishlist-btn" onclick="toggleWishlist()">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Trust Row -->
+                    <div class="trust-row">
+                        <div class="trust-item-small">
+                            <i class="fas fa-shipping-fast"></i>
+                            <span>Free shipping on orders over $100</span>
+                        </div>
+                        <div class="trust-item-small">
+                            <i class="fas fa-sync-alt"></i>
+                            <span>100-day hassle-free returns</span>
+                        </div>
+                        <div class="trust-item-small">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Secure payment & data protection</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Share Product -->
+                    <div style="margin-top: 32px;">
+                        <span class="option-title">Share:</span>
+                        <div class="social-icons" style="margin-top: 12px;">
+                            <a href="#" style="color: var(--slate); font-size: 18px;"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" style="color: var(--slate); font-size: 18px;"><i class="fab fa-twitter"></i></a>
+                            <a href="#" style="color: var(--slate); font-size: 18px;"><i class="fab fa-pinterest"></i></a>
+                            <a href="#" style="color: var(--slate); font-size: 18px;"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product Tabs -->
+            <div class="product-tabs">
+                <div class="tab-headers">
+                    <button class="tab-header active" onclick="openTab('description')">Description</button>
+                    <button class="tab-header" onclick="openTab('specifications')">Specifications</button>
+                    <button class="tab-header" onclick="openTab('care')">Care Instructions</button>
+                    <button class="tab-header" onclick="openTab('reviews')" id="reviews-tab">Reviews (42)</button>
+                    <button class="tab-header" onclick="openTab('shipping')">Shipping & Returns</button>
+                </div>
+                
+                <!-- Description Tab -->
+                <div class="tab-content active" id="description">
+                    <h3 style="margin-bottom: 24px; color: var(--primary);">Product Details</h3>
+                    <p style="color: var(--slate); margin-bottom: 24px; line-height: 1.7;">
+                        Our Premium Wool Blazer is designed for the modern individual who values both style and substance. 
+                        Crafted from the finest Italian wool, this blazer offers exceptional drape, breathability, and durability.
+                    </p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; margin-top: 32px;">
+                        <div>
+                            <h4 style="margin-bottom: 12px; color: var(--charcoal);">Features</h4>
+                            <ul style="color: var(--slate); line-height: 1.7; padding-left: 20px;">
+                                <li>100% premium Italian wool</li>
+                                <li>Modern slim fit</li>
+                                <li>Notch lapel design</li>
+                                <li>Functional button cuffs</li>
+                                <li>Breathable cupro lining</li>
+                                <li>Two front flap pockets</li>
+                                <li>Single vent back</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h4 style="margin-bottom: 12px; color: var(--charcoal);">Perfect For</h4>
+                            <ul style="color: var(--slate); line-height: 1.7; padding-left: 20px;">
+                                <li>Business meetings</li>
+                                <li>Weddings & formal events</li>
+                                <li>Date nights</li>
+                                <li>Office wear</li>
+                                <li>Cocktail parties</li>
+                                <li>Important presentations</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Specifications Tab -->
+                <div class="tab-content" id="specifications">
+                    <table class="specs-table">
+                        <tr>
+                            <td>Material</td>
+                            <td>100% Italian Wool</td>
+                        </tr>
+                        <tr>
+                            <td>Lining</td>
+                            <td>100% Cupro</td>
+                        </tr>
+                        <tr>
+                            <td>Fit</td>
+                            <td>Slim Fit</td>
+                        </tr>
+                        <tr>
+                            <td>Closure</td>
+                            <td>Single-button</td>
+                        </tr>
+                        <tr>
+                            <td>Lapel</td>
+                            <td>Notch Lapel</td>
+                        </tr>
+                        <tr>
+                            <td>Pockets</td>
+                            <td>2 front flap pockets, 1 chest pocket</td>
+                        </tr>
+                        <tr>
+                            <td>Vent</td>
+                            <td>Single center vent</td>
+                        </tr>
+                        <tr>
+                            <td>Weight</td>
+                            <td>Medium (280-320 gsm)</td>
+                        </tr>
+                        <tr>
+                            <td>Origin</td>
+                            <td>Designed in New York, Made in Italy</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <!-- Care Instructions Tab -->
+                <div class="tab-content" id="care">
+                    <h3 style="margin-bottom: 24px; color: var(--primary);">Care Instructions</h3>
+                    <p style="color: var(--slate); margin-bottom: 24px; line-height: 1.7;">
+                        To ensure your blazer maintains its premium quality and longevity, please follow these care instructions:
+                    </p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; margin-top: 32px;">
+                        <div>
+                            <h4 style="margin-bottom: 12px; color: var(--charcoal);"><i class="fas fa-check-circle" style="color: var(--success); margin-right: 8px;"></i> Do</h4>
+                            <ul style="color: var(--slate); line-height: 1.7; padding-left: 20px;">
+                                <li>Dry clean only</li>
+                                <li>Use wooden hangers</li>
+                                <li>Store in breathable garment bag</li>
+                                <li>Brush with clothes brush after wear</li>
+                                <li>Steam to remove wrinkles</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h4 style="margin-bottom: 12px; color: var(--charcoal);"><i class="fas fa-times-circle" style="color: var(--error); margin-right: 8px;"></i> Don't</h4>
+                            <ul style="color: var(--slate); line-height: 1.7; padding-left: 20px;">
+                                <li>Machine wash or tumble dry</li>
+                                <li>Use wire hangers</li>
+                                <li>Store in plastic bags</li>
+                                <li>Iron directly on fabric</li>
+                                <li>Use bleach or harsh chemicals</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Reviews Tab -->
+                <div class="tab-content" id="reviews">
+                    <!-- Review Summary -->
+                    <div class="review-summary">
+                        <div class="overall-rating">
+                            <div class="rating-number">4.7</div>
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <div class="total-reviews">Based on 42 reviews</div>
+                        </div>
+                        
+                        <div class="rating-bars">
+                            <div class="rating-bar">
+                                <span class="rating-label">5 stars</span>
+                                <div class="bar-container">
+                                    <div class="bar" style="width: 75%;"></div>
+                                </div>
+                                <span class="rating-count">75%</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span class="rating-label">4 stars</span>
+                                <div class="bar-container">
+                                    <div class="bar" style="width: 15%;"></div>
+                                </div>
+                                <span class="rating-count">15%</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span class="rating-label">3 stars</span>
+                                <div class="bar-container">
+                                    <div class="bar" style="width: 5%;"></div>
+                                </div>
+                                <span class="rating-count">5%</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span class="rating-label">2 stars</span>
+                                <div class="bar-container">
+                                    <div class="bar" style="width: 3%;"></div>
+                                </div>
+                                <span class="rating-count">3%</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span class="rating-label">1 star</span>
+                                <div class="bar-container">
+                                    <div class="bar" style="width: 2%;"></div>
+                                </div>
+                                <span class="rating-count">2%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Review List -->
+                    <div class="review-list">
+                        <!-- Review 1 -->
+                        <div class="review-item">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <h4>Michael T.</h4>
+                                    <div class="stars" style="margin: 8px 0;">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <div class="review-date">October 12, 2023</div>
+                                </div>
+                                <div class="verified-badge" style="background-color: var(--success); color: white; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 600;">
+                                    Verified Purchase
+                                </div>
+                            </div>
+                            <div class="review-content">
+                                <p>"Absolutely love this blazer! The fit is perfect and the quality is outstanding. Received multiple compliments the first time I wore it. The wool is much higher quality than other blazers I've owned."</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Review 2 -->
+                        <div class="review-item">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <h4>Sarah J.</h4>
+                                    <div class="stars" style="margin: 8px 0;">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </div>
+                                    <div class="review-date">September 28, 2023</div>
+                                </div>
+                                <div class="verified-badge" style="background-color: var(--success); color: white; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 600;">
+                                    Verified Purchase
+                                </div>
+                            </div>
+                            <div class="review-content">
+                                <p>"Bought this for my husband's birthday. He's very particular about fit and this was perfect right out of the box. The material feels luxurious and it drapes beautifully. Will definitely be purchasing more items from ELEVATE."</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Write Review Button -->
+                    <div style="text-align: center; margin-top: 40px;">
+                        <button class="btn btn-primary" onclick="openReviewForm()">Write a Review</button>
+                    </div>
+                </div>
+                
+                <!-- Shipping Tab -->
+                <div class="tab-content" id="shipping">
+                    <h3 style="margin-bottom: 24px; color: var(--primary);">Shipping & Returns</h3>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 32px; margin-top: 32px;">
+                        <div>
+                            <h4 style="margin-bottom: 16px; color: var(--charcoal);"><i class="fas fa-shipping-fast" style="color: var(--accent); margin-right: 12px;"></i> Shipping</h4>
+                            <ul style="color: var(--slate); line-height: 1.7;">
+                                <li><strong>Standard:</strong> 3-7 business days - Free on orders over $100</li>
+                                <li><strong>Express:</strong> 1-3 business days - $12.99</li>
+                                <li><strong>Overnight:</strong> Next business day - $24.99</li>
+                                <li>International shipping available to 50+ countries</li>
+                                <li>Real-time tracking provided</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h4 style="margin-bottom: 16px; color: var(--charcoal);"><i class="fas fa-sync-alt" style="color: var(--accent); margin-right: 12px;"></i> Returns</h4>
+                            <ul style="color: var(--slate); line-height: 1.7;">
+                                <li><strong>100-day return policy</strong></li>
+                                <li>Free returns on orders over $100</li>
+                                <li>Items must be unworn and in original condition</li>
+                                <li>Original tags must be attached</li>
+                                <li>Refunds processed within 5-7 business days</li>
+                                <li>Exchanges processed within 3-5 business days</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Related Products -->
+    <section class="related-products">
+        <div class="container">
+            <h2 class="section-title fade-in">You May Also Like</h2>
+            
+            <div class="product-grid">
+                <!-- Related Product 1 -->
+                <a href="product.html?id=2" class="product-card fade-in">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Organic Cotton T-Shirt">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">T-Shirts</div>
+                        <h3 class="product-title">Organic Cotton T-Shirt</h3>
+                        <div class="product-price">
+                            <span class="current-price">$34.99</span>
+                        </div>
+                        <div class="product-rating-small">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span style="color: var(--slate); font-size: 12px; margin-left: 4px;">(128)</span>
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- Related Product 2 -->
+                <a href="product.html?id=4" class="product-card fade-in delay-1">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Cashmere Sweater">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Sweaters</div>
+                        <h3 class="product-title">Cashmere Crewneck Sweater</h3>
+                        <div class="product-price">
+                            <span class="current-price">$149.99</span>
+                        </div>
+                        <div class="product-rating-small">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span style="color: var(--slate); font-size: 12px; margin-left: 4px;">(89)</span>
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- Related Product 3 -->
+                <a href="product.html?id=7" class="product-card fade-in delay-2">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1554412933-514a83d2f3c8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Dress Shirt">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Shirts</div>
+                        <h3 class="product-title">Egyptian Cotton Dress Shirt</h3>
+                        <div class="product-price">
+                            <span class="current-price">$89.99</span>
+                            <span class="original-price">$119.99</span>
+                        </div>
+                        <div class="product-rating-small">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span style="color: var(--slate); font-size: 12px; margin-left: 4px;">(76)</span>
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- Related Product 4 -->
+                <a href="product.html?id=5" class="product-card fade-in delay-3">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Leather Jacket">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Outerwear</div>
+                        <h3 class="product-title">Classic Leather Jacket</h3>
+                        <div class="product-price">
+                            <span class="current-price">$299.99</span>
+                            <span class="original-price">$399.99</span>
+                        </div>
+                        <div class="product-rating-small">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span style="color: var(--slate); font-size: 12px; margin-left: 4px;">(203)</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>ELEVATE</h3>
+                    <p style="color: #CBD5E0; margin-bottom: 24px;">Premium menswear crafted for the modern individual. Sustainable, ethical, and built to last.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Shop</h3>
+                    <ul class="footer-links">
+                        <li><a href="shop.html">All Collections</a></li>
+                        <li><a href="collections.html">New Arrivals</a></li>
+                        <li><a href="collections.html">Best Sellers</a></li>
+                        <li><a href="collections.html">Sustainable Line</a></li>
+                        <li><a href="shop.html">Gift Cards</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="shipping.html">Shipping & Returns</a></li>
+                        <li><a href="size-guide.html">Size Guide</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="track-order.html">Track Order</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html">Our Story</a></li>
+                        <li><a href="sustainability.html">Sustainability</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div style="color: #CBD5E0; font-size: 14px;">
+                    &copy; 2023 ELEVATE. All rights reserved.
+                </div>
+                
+                <div class="payment-icons">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-amex"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                    <i class="fab fa-apple-pay"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Common JavaScript -->
+    <script src="script.js"></script>
+    
+    <!-- Product Page JavaScript -->
+    <script>
+        // Product Gallery
+        const images = [
+            'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1551028719-00167b16eac5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1554412933-514a83d2f3c8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+        ];
+        
+        function changeImage(index) {
+            // Update main image
+            const mainImage = document.getElementById('main-product-image');
+            mainImage.src = images[index];
+            
+            // Update active thumbnail
+            document.querySelectorAll('.thumbnail').forEach((thumb, i) => {
+                thumb.classList.toggle('active', i === index);
+            });
+        }
+        
+        // Color Selection
+        let selectedColor = 'Navy';
+        
+        function selectColor(index, colorName) {
+            selectedColor = colorName;
+            
+            // Update active color
+            document.querySelectorAll('.color-option').forEach((color, i) => {
+                color.classList.toggle('active', i === index);
+            });
+            
+            console.log('Selected color:', colorName);
+        }
+        
+        // Size Selection
+        document.querySelectorAll('.size-option:not(.disabled)').forEach(size => {
+            size.addEventListener('click', function() {
+                document.querySelectorAll('.size-option').forEach(s => {
+                    s.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                console.log('Selected size:', this.textContent);
+            });
+        });
+        
+        // Quantity Selector
+        function updateQuantity(change) {
+            const quantityInput = document.getElementById('quantity');
+            let currentValue = parseInt(quantityInput.value);
+            currentValue += change;
+            
+            if (currentValue < 1) currentValue = 1;
+            if (currentValue > 10) currentValue = 10;
+            
+            quantityInput.value = currentValue;
+        }
+        
+        // Add to Cart
+        function addToCartProduct() {
+            const quantity = document.getElementById('quantity').value;
+            const productName = 'Premium Wool Blazer';
+            const price = 189.99;
+            
+            addToCart(1, productName, price, parseInt(quantity));
+            
+            // Update notification with color and size
+            const selectedSize = document.querySelector('.size-option.active').textContent;
+            showNotification(`Added ${quantity} ${selectedColor} ${productName} (Size: ${selectedSize}) to cart!`);
+        }
+        
+        // Buy Now
+        function buyNowProduct() {
+            const quantity = document.getElementById('quantity').value;
+            const productName = 'Premium Wool Blazer';
+            const price = 189.99;
+            
+            // Add to cart first
+            addToCart(1, productName, price, parseInt(quantity));
+            
+            // Then redirect to checkout
+            setTimeout(() => {
+                alert('Proceeding to checkout!');
+                // In real implementation: window.location.href = 'checkout.html';
+            }, 300);
+        }
+        
+        // Wishlist
+        let inWishlist = false;
+        
+        function toggleWishlist() {
+            const wishlistBtn = document.querySelector('.wishlist-btn i');
+            inWishlist = !inWishlist;
+            
+            if (inWishlist) {
+                wishlistBtn.className = 'fas fa-heart';
+                wishlistBtn.parentElement.style.color = 'var(--accent)';
+                showNotification('Added to wishlist!');
+            } else {
+                wishlistBtn.className = 'far fa-heart';
+                wishlistBtn.parentElement.style.color = '';
+                showNotification('Removed from wishlist');
+            }
+        }
+        
+        // Tab Switching
+        function openTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all tab headers
+            document.querySelectorAll('.tab-header').forEach(header => {
+                header.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked tab header
+            event.currentTarget.classList.add('active');
+        }
+        
+        // Review Form
+        function openReviewForm() {
+            const reviewFormHTML = `
+                <div style="background-color: white; padding: 40px; border-radius: var(--radius); box-shadow: var(--shadow); max-width: 600px; margin: 40px auto;">
+                    <h3 style="margin-bottom: 24px; color: var(--primary);">Write a Review</h3>
+                    
+                    <form id="reviewForm" style="display: flex; flex-direction: column; gap: 24px;">
+                        <div>
+                            <label style="display: block; margin-bottom: 8px; font-weight: 500; color: var(--charcoal);">Rating *</label>
+                            <div class="stars" id="reviewStars" style="font-size: 24px; color: #ddd; cursor: pointer;">
+                                <i class="far fa-star" data-rating="1"></i>
+                                <i class="far fa-star" data-rating="2"></i>
+                                <i class="far fa-star" data-rating="3"></i>
+                                <i class="far fa-star" data-rating="4"></i>
+                                <i class="far fa-star" data-rating="5"></i>
+                            </div>
+                            <input type="hidden" id="ratingValue" name="rating" value="0">
+                        </div>
+                        
+                        <div>
+                            <label style="display: block; margin-bottom: 8px; font-weight: 500; color: var(--charcoal);">Review Title</label>
+                            <input type="text" style="width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: var(--radius);" placeholder="Summarize your experience">
+                        </div>
+                        
+                        <div>
+                            <label style="display: block; margin-bottom: 8px; font-weight: 500; color: var(--charcoal);">Your Review *</label>
+                            <textarea style="width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: var(--radius); min-height: 150px;" placeholder="Share your experience with this product" required></textarea>
+                        </div>
+                        
+                        <div>
+                            <label style="display: block; margin-bottom: 8px; font-weight: 500; color: var(--charcoal);">Your Name *</label>
+                            <input type="text" style="width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: var(--radius);" required>
+                        </div>
+                        
+                        <div style="display: flex; gap: 16px;">
+                            <button type="submit" class="btn btn-primary" style="flex: 1;">Submit Review</button>
+                            <button type="button" class="btn btn-secondary" onclick="closeReviewForm()" style="flex: 1;">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            `;
+            
+            const reviewContainer = document.getElementById('reviews');
+            reviewContainer.innerHTML = reviewFormHTML + reviewContainer.innerHTML;
+            
+            // Initialize star rating
+            const stars = document.querySelectorAll('#reviewStars i');
+            stars.forEach(star => {
+                star.addEventListener('mouseover', function() {
+                    const rating = parseInt(this.getAttribute('data-rating'));
+                    highlightStars(rating);
+                });
+                
+                star.addEventListener('click', function() {
+                    const rating = parseInt(this.getAttribute('data-rating'));
+                    document.getElementById('ratingValue').value = rating;
+                });
+            });
+            
+            document.getElementById('reviewStars').addEventListener('mouseleave', function() {
+                const currentRating = parseInt(document.getElementById('ratingValue').value);
+                highlightStars(currentRating);
+            });
+            
+            // Form submission
+            document.getElementById('reviewForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                showNotification('Thank you for your review! It will be published after moderation.');
+                openTab('reviews');
+            });
+        }
+        
+        function highlightStars(rating) {
+            const stars = document.querySelectorAll('#reviewStars i');
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.className = 'fas fa-star';
+                    star.style.color = '#FFC107';
+                } else {
+                    star.className = 'far fa-star';
+                    star.style.color = '#ddd';
+                }
+            });
+        }
+        
+        function closeReviewForm() {
+            openTab('reviews');
+        }
+        
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set initial active tab
+            openTab('description');
+        });
+    </script>
+</body>
+</html>
